@@ -1,1 +1,1 @@
-# Project-1
+# Wholesale Management System
