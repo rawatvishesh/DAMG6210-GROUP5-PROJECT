@@ -1,15 +1,14 @@
 -----COUNTRY TABLE------
-Drop table Country cascade constraints;
-
 Create table Country (
     Country_id    number not null,
     Country_name  varchar2(50) not null,
     constraint pk_countryid primary key(Country_id)
 );
 
------STATE TABLE-----
-Drop table States cascade constraints;
+Insert into Country (Country_id, Country_name) values(1, 'United States of America');
 
+
+-----STATE TABLE-----
 Create table States (
     States_id      number not null,
     States_name    varchar2(50),
@@ -18,10 +17,10 @@ Create table States (
     Constraint fk_countryid foreign key (Country_id)
         references Country (Country_id)
 );
+Insert into States ( States_id, States_name, Country_id) values (1, 'Massachusetts' , 1);
+
 
 -----CITY TABLE-----
-Drop table City cascade constraints;
-
 Create table City (
     City_id      number not null,
     City_name    varchar2(50) not null,
@@ -31,9 +30,13 @@ Create table City (
         references States (States_id)
 );
 
---------Customers---------
-drop table Customers cascade constraints;
+Insert into City ( City_id, City_name, States_id) values (1, 'Boston' , 1 );
+Insert into City ( City_id, City_name, States_id) values (2, 'Acton' , 1 );
+Insert into City ( City_id, City_name, States_id) values (3, 'Quincy' , 1 );
+Insert into City ( City_id, City_name, States_id) values (4, 'Waltham' , 1 );
+Insert into City ( City_id, City_name, States_id) values (5, 'Brooklyn' , 1 );
 
+--------Customers---------
 create table Customers (  
   Customer_id         NUMBER , 
   First_name          varchar2(50) not null,  
@@ -45,10 +48,29 @@ create table Customers (
   constraint pk_customer_id primary key (Customer_id)
 );
 
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (1,'Alex', 'Martin', 'Alex.M@gmail.com', 9454114848, 'Alex.m', 'Alex@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (2,'Jessica', 'Pearson', 'Jessica.P@gmail.com', 9441214846, 'Jessica.p', 'Jessica@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (3,'Harvey', 'Specter', 'Harvey.S@gmail.com', 8457267198, 'Harvey.s', 'Harvey@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (4,'Donna', 'Paulsen', 'Donna.p@gmail.com', 7594238468, 'Donna.p', 'Donna@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (5,'Louis', 'Litt', 'Louis.l@gmail.com', 9547613547, 'Louis.l', 'Louis@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (6,'Mike', 'Ross', 'Mike.r@gmail.com', 7954147451, 'Mike.r', 'Mike@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (7,'Rachael', 'Zane', 'Rachael.z@gmail.com', 8462179463, 'Rachael.z', 'Rachael@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (8,'Travis', 'Tanner', 'Travis.t@gmail.com', 9754688464, 'Travis.t', 'Travis@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (9,'Samantha', 'Wheeler', 'Samantha.w@gmail.com', 4841648466, 'Samnatha.w', 'Samantha@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (10,'Chandler', 'Bing', 'Chandler.b@gmail.com', 9751154867, 'Chandler.b', 'Chandler@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (11,'Monica', 'Geller', 'Monica.g@gmail.com', 7845164136, 'Monica.g', 'Monica@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (12,'Pheobe', 'Buffay', 'pheobe.b@gmail.com', 8461784635, 'Pheobe.b', 'Pheobe@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (13,'Sheldon', 'Coooper', 'Sheldon.c@gmail.com', 4794194658, 'Sheldon.c', 'Sheldon@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (14,'Leonard', 'Hofstader', 'Leonard.h@gmail.com', 9724897512, 'Leonard.h', 'Leonard@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (15,'Raj', 'Kootharpali', 'Raj.k@gmail.com', 5493884998, 'Raj.k', 'Raj@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (16,'Amy', 'cooper', 'Amy.c@gmail.com', 8446813218, 'Amy.c', 'Amy@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (17,'Laura', 'Masina', 'Laura.M@gmail.com',1494514848, 'Laura.m', 'Laura@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (18,'Dan', 'Johnson', 'Dan.J@gmail.com', 9414114548, 'Dan.j', 'Dan@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (19,'Stephen', 'Jackson', 'Stephen.J@gmail.com', 94458148486, 'Stephen.j', 'Stephen@123');
+Insert into Customers (Customer_id,First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) values (20,'Martha', 'Stuart', 'Martha.s@gmail.com', 8423716872, 'Martha.s', 'Martha@123');
+
 
 -----Customer address-----
-Drop table Address cascade constraints;
-
 Create table Address (
     Address_id         number not null,
     Customer_id        number not null,
@@ -63,10 +85,28 @@ Create table Address (
     constraint fk_address_cityid foreign key (City_id)
         references City (City_id)
 );
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (1, 1, 1001, '1575 Tremont street','Longwood apartments', 1, 02120);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (2, 2, 550, '32B Mcgreway way', NULL, 1, 02115);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (3, 3, 32, '14A Macoon way', 'Bacon apartments', 1, 02140);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (4, 4, 360, '1 Cobden street','Quincy aprtments',1, 02220);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (5, 5, 1200, '300 Brown bear zing', NULL,  2, 02710);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (6, 6, 125, '220 Old Beever Brook', NULL,  2, 02650);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (7, 7, 795, 'Waterside clearning', NULL,  2, 02550);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (8, 8, 65, '400 Old stone','Jvue apartments',  2, 02590);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (9, 9, 420, '1 Congress street','Park avenue',  3, 01150);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (10, 10, 798, 'Crown colony', NULL,  3, 01170);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (11, 11, 458, '519C street', NULL,  3, 01970);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (12, 12, 348, 'South ray quincy road', NULL,  3, 01210);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (13, 13, 715, '66 Loretta road',' Downtown apartments', 4, 02453);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (14, 14, 684, '33 Harvard street', 'Warwick apt', 4, 02460);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (15, 15, 170, 'Pinnehill road', null, 4, 02470);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (16, 16, 5, '26 taylor street', null, 4, 02520);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (17, 17, 9, 'Dudley street','Assembly row', 5, 02445);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (18, 18, 570, '284 Woodloand road','Copley hotel',  5, 02467);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (19, 19, 64, 'Asheville road','Boston apartments', 5, 02220);
+Insert into Address (Address_id, Customer_id, Apt_no, Address_line1, Address_line2, City_id, Zipcode) Values (20, 20, 98, 'Park street', NULL, 5, 02446);
 
 ----CARD DETAIL-----
-Drop table Card_detail cascade constraints;
-
 Create table Card_detail(
     Card_no        number not null,
     Customer_id    number not null,
@@ -78,11 +118,30 @@ Create table Card_detail(
         references Customers (Customer_id)
 );
 
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (3742454550012655, 1, 'VISA', to_date('07/2021','mm-yyyy'), 'Alex Martin');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (6011000991350951, 2, 'Mastercard', to_date('10/2025','mm-yyyy'), 'Jessica Pearson');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (2223000048410010, 3, 'Credit card', to_date('01/2024','mm-yyyy'), 'Harvey Specter');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (4917484589897107, 4, 'Debit card', to_date('09/2026','mm-yyyy'), 'Donna Paulsen');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (4001919257537173, 5, 'Mastercard', to_date('03/2025','mm-yyyy'), 'Louis Litt');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (5011054488597827, 6, 'Credit card', to_date('10/2023','mm-yyyy'), 'Mike Ross');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (6271071225651481, 7, 'VISA', to_date('11/2026','mm-yyyy'), 'Rachael Zane');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (5616551311105188, 8, 'VISA', to_date('12/2026','mm-yyyy'), 'Travis Tanner');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (9713810154815089, 9, 'VISA', to_date('02/2024','mm-yyyy'), 'Samantha Wheeler');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (3774991138803467, 10, 'Mastercard', to_date('03/2024','mm-yyyy'), 'Chandler Bing');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (7894235485154855, 11, 'Mastercard', to_date('12/2026','mm-yyyy'), 'Monica Geller');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (5478613479761254, 12, 'Credit card', to_date('01/2025','mm-yyyy'), 'Pheobe Buffay');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (2487319467184972, 13, 'Credit card', to_date('04/2026','mm-yyyy'), 'Sheldon Cooper');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (6794248481215489, 14, 'Debit card', to_date('02/2026','mm-yyyy'), 'Leonard Hofstader');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (7981315410651341, 15, 'VISA', to_date('05/2028','mm-yyyy'), 'Raj Kootharpali');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (9215348411438413, 16, 'VISA', to_date('09/2024','mm-yyyy'), 'Amy Cooper');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (3843164613413845, 17, 'Debit card', to_date('09/2023','mm-yyyy'), 'Laura Masina');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (8641845111484988, 18, 'Debit card', to_date('03/2024','mm-yyyy'), 'Dan Johnson');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (8489784312442146, 19, 'Platinum card', to_date('12/2026','mm-yyyy'), 'Stephen Jackson');
+Insert into Card_detail (Card_no, Customer_id, Card_type, Validity_date, Name_on_card) values (5555421345557875, 20, 'Platinum card', to_date('06/2027','mm-yyyy'), 'Martha Stuart');
+
 
 
 -----SUBSCRIPTION DETAILS------
-Drop table Subscription_detail cascade constraints;
-
 Create table Subscription_detail (
     Subscription_id         number not null,
     Subscription_type       varchar(50) not null,
@@ -92,10 +151,12 @@ Create table Subscription_detail (
     constraint pk_subscription primary key (Subscription_id)
 );
 
+Insert into Subscription_detail (Subscription_id, Subscription_type, Discount, Valid_duration_month, Price) values (1, 'Platinum', 0.30, '8 month', 399);
+Insert into Subscription_detail (Subscription_id, Subscription_type, Discount, Valid_duration_month, Price) values (2, 'Gold', 0.20 , '5 month', 299);
+Insert into Subscription_detail (Subscription_id, Subscription_type, Discount, Valid_duration_month, Price) values (3, 'Silver', 0.10, '3 month', 199);
+
 
 -----CUSTOMER MEMBERSHIP-----
-Drop table Customer_membership cascade constraints;
-
 Create table Customer_membership (
     Membership_id       number not null,
     Customer_id         number not null,
@@ -109,9 +170,19 @@ Create table Customer_membership (
         references Subscription_detail (Subscription_id)
 );
 
----------Warehouse----------
-Drop table Warehouse cascade constraints;
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000001, 2, 1, to_date('01/03/2022','dd-mm-yyyy'), to_date('01/11/2022','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000002, 4, 3, to_date('06/04/2022','dd-mm-yyyy'), to_date('06/07/2022','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000003, 6, 2, to_date('11/03/2022','dd-mm-yyyy'), to_date('11/08/2022','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000004, 8, 1, to_date('04/02/2022','dd-mm-yyyy'), to_date('04/10/2022','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000005, 10, 3, to_date('11/07/2022','dd-mm-yyyy'), to_date('11/10/2022','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000006, 12, 1, to_date('17/08/2022','dd-mm-yyyy'), to_date('17/04/2023','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000007, 14, 2, to_date('20/05/2022','dd-mm-yyyy'), to_date('20/11/2022','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000008, 16, 3, to_date('23/11/2022','dd-mm-yyyy'), to_date('23/02/2023','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000009, 18, 1, to_date('28/10/2022','dd-mm-yyyy'), to_date('28/06/2022','dd-mm-yyyy'));
+INSERT INTO Customer_membership (Membership_id,Customer_id,Subscription_id,Date_of_purchase,Date_of_expiry) values (000010, 20, 3, to_date('03/07/2022','dd-mm-yyyy'), to_date('03/10/2022','dd-mm-yyyy'));
 
+
+---------Warehouse----------
 create table Warehouse (  
   Warehouse_id           number not null,  
   Warehouse_name         varchar2(25) not null,
@@ -123,19 +194,25 @@ create table Warehouse (
   constraint pk_warehouse_id primary key (Warehouse_id)
 );
 
+Insert into Warehouse(Warehouse_id, Warehouse_name, Address, City, States, Country, Zip_code) values (1,'Warehouse1','2 Temont Street ', 'Boston', 'Massachusetts', 'United States of America', '02124');
+Insert into Warehouse(Warehouse_id, Warehouse_name, Address, City, States, Country, Zip_code) values (2,'Warehouse2','71 Avenue', 'Waltham', 'Massachusetts', 'United States of America', '02129');
+Insert into Warehouse(Warehouse_id, Warehouse_name, Address, City, States, Country, Zip_code) values (3,'Warehouse3','301 Falls Blvd', 'Quincy', 'Massachusetts', 'United States of America', '02220');
+
+
 
 ---------Product category----------
-Drop table Product_category cascade constraints;
-
 create table Product_category (  
   Category_id           number not null,  
   Category_name         varchar2(25) not null,
   constraint pk_category_id primary key (Category_id)
 );
 
-------PRODUCT-----
-Drop table Product cascade constraints;
+Insert into Product_category( Category_id, Category_name) values (1, 'Grocery');
+Insert into Product_category( Category_id, Category_name) values (2, 'Electronics');
+Insert into Product_category( Category_id, Category_name) values (3, 'Funiture');
+Insert into Product_category( Category_id, Category_name) values (4, 'personal care/beauty');
 
+------PRODUCT-----
 Create table Product (
     Product_id           number not null,
     Product_name         varchar2(100) not null,
@@ -144,7 +221,7 @@ Create table Product (
     Quantity             number not null,
     Product_price        Float not null,
     Manufacturing_date   date not null,
-    Expiry_date          date not null,
+    Expiry_date          date,
     constraint pk_product primary key (Product_id),
     constraint fk_product foreign key (Category_id)
         references Product_category (Category_id),
@@ -152,18 +229,96 @@ Create table Product (
         references Warehouse (Warehouse_id)
 );
 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600001, 'Breakfast careal',1, 2, 50, 4.99, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600002, 'Cheese', 1, 2, 75, 8.99, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600003, 'Bread', 1, 2, 80, 2.89, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600004, 'Rice', 1, 2, 1000, 11.99, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600005, 'Yogut', 1, 2, 4 , 25,  to_date('04/29/2022','mm-dd-yyyy'), to_date('10/29/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600006, 'Tomatoes', 1, 2, 6, 8.99,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600007, 'Sea food', 1, 2, 3, 14,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600008, 'Chips', 1, 2, 7, 12,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy'));
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600009, 'Cookies', 1, 2, 8, 9,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600010, 'Mac', 1, 2, 2, 5,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600011, 'Lemons', 1, 2, 3, 5,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600012, 'Melons', 1, 2, 2, 7,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600013, 'Cat Fish', 1, 2, 1, 10, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600014, 'Chicken', 1, 2, 2, 25,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600015, 'Bacon', 1, 2, 3, 18,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600016, 'Carrot', 1, 2, 4, 14, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600017, 'Corn Starch', 1, 2, 3, 14,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600018, 'Sugar', 1, 2, 3, 14, to_date('04/29/2022','mm-dd-yyyy'), to_date('10/29/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600019, 'Diapers', 1, 2, 2, 25, to_date('04/20/2022','mm-dd-yyyy'),to_date('10/20/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600020, 'White Rice', 1, 2, 500, 25,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600021, 'BBQ Seasoning', 1, 2, 2, 30,to_date('04/29/2022','mm-dd-yyyy'), to_date('10/29/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600022, 'Pepper', 1, 2, 3, 34,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600023, 'Season Salt', 1, 2, 1, 7.99, to_date('04/29/2022','mm-dd-yyyy'), to_date('10/29/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600024, 'Olive Oil', 1, 2, 1, 14, to_date('04/20/2022','mm-dd-yyyy'), to_date('10/20/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600025, 'Beer', 1, 2, 1, 4.99,  to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600026, 'Shampoo', 1, 2, 1, 8.99, to_date('04/20/2022','mm-dd-yyyy'), to_date('10/20/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600027, 'Clock', 2, 1, 20 ,25.00, to_date('07/21/2022','mm-dd-yyyy'), NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600028, 'Television', 2,1, 50, 600.00,to_date('07/21/2022','mm-dd-yyyy'),NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600029, 'Mouse',2,1, 100, 19.99, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600030, 'Printer',2,1, 50, 159.99, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600031, 'Celling Fan', 2, 1, 80, 29.00,to_date('07/21/2022','mm-dd-yyyy'), NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600032, 'Iron', 2,1,60, 8.99, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600033, 'Laptop', 2,1, 40, 800, to_date('07/21/2022','mm-dd-yyyy'),NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600034, 'Camera',2,1, 20, 250, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600035, 'Security Camera', 2,1, 60, 300, to_date('07/21/2022','mm-dd-yyyy'), NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600036, 'Oven',2,1,25, 159.99, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600037, 'Projector', 2,1, 30, 250, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600038, 'Dishwasher',2,1, 10, 1499.00, to_date('07/21/2022','mm-dd-yyyy'), NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600039, 'Hair dryer', 2,1, 30, 45.99, to_date('07/21/2022','mm-dd-yyyy'), NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600040, 'Table', 3, 2, 14, 50, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600041, 'Chairs', 3, 2, 45, 45, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600042, 'Couch', 3, 2, 25, 100,to_date('07/21/2022','mm-dd-yyyy'), NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600043, 'Bed', 3, 2, 19, 154, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600044, 'Night Stand', 3, 2, 11, 41, to_date('07/21/2022','mm-dd-yyyy'), NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600045, 'Side Board', 3, 2, 8, 15, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600046, 'Arm Chair', 3, 2, 17, 45, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600047, 'Chase Laounge', 3, 2, 15, 145, to_date('07/21/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600048, 'Perfume', 4,3, 20, 15.99, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600049, 'Moisturizer',4,3,10,30, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600050, 'Deodorant',4,3,6,80, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy'));
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600051, 'Toothpaste',4,3,30,5.99, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600052, 'Shower gel',4,3,7,12.00,to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600053, 'Cotton pads',4,3, 6,10,to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy'));
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600054, 'Facial Tissue',4,3,40,8.99,to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600055, 'Nail clippers',4,3, 20,4.99, to_date('10/29/2022','mm-dd-yyyy'), NULL); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600056, 'Comb',4,3,10,2.99, to_date('10/29/2022','mm-dd-yyyy'), NULL);
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600057, 'Face wipes',4,3,30,12.99, to_date('04/29/2022','mm-dd-yyyy'), to_date('10/29/2022','mm-dd-yyyy'));
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600058, 'Shaving Cream',4,3,20,8.50, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy')); 
+INSERT INTO Product (Product_id, Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) Values    (0600059, 'Razor',4,3,10,6.50, to_date('01/21/2022','mm-dd-yyyy'), to_date('07/21/2022','mm-dd-yyyy'));
+    
+
 
 -------Order Status------------
-Drop table Order_status cascade constraints;
-
 create table Order_status (  
   Status_id           number not null,  
   Status              varchar2(25) not null,  
   constraint pk_status_id primary key (Status_id)
 );
 
+Insert into Order_status (Status_id, Status) values (1, 'Order placed');
+Insert into Order_status (Status_id, Status) values (2, 'Shipped');
+Insert into Order_status (Status_id, Status) values (3, 'On the way');
+Insert into Order_status (Status_id, Status) values (4, 'Delivered');
+
+
+
+Drop table Country cascade constraints;
+Drop table States cascade constraints;
+Drop table City cascade constraints;
+drop table Customers cascade constraints;
+Drop table Address cascade constraints;
+Drop table Card_detail cascade constraints;
+Drop table Subscription_detail cascade constraints;
+Drop table Customer_membership cascade constraints;
+Drop table Warehouse cascade constraints;
+Drop table Product_category cascade constraints;
+Drop table Product cascade constraints;
+Drop table Order_status cascade constraints;
+
 ------Orders---------------
-Drop table Orders cascade constraints;
 
 create table Orders (  
   Order_id            number not null,  
@@ -182,7 +337,6 @@ create table Orders (
 );
 
 -----Order Product------
-Drop table Orders_product cascade constraints;
 
 create table Orders_product (  
   Order_product_id    number not null,  
@@ -196,3 +350,26 @@ create table Orders_product (
   constraint fk_product1 foreign key (Product_id)
   references Product (Product_id)
 );
+
+
+
+
+
+
+
+
+
+Drop table Country cascade constraints;
+Drop table States cascade constraints;
+Drop table City cascade constraints;
+drop table Customers cascade constraints;
+Drop table Address cascade constraints;
+Drop table Card_detail cascade constraints;
+Drop table Subscription_detail cascade constraints;
+Drop table Customer_membership cascade constraints;
+Drop table Warehouse cascade constraints;
+Drop table Product_category cascade constraints;
+Drop table Product cascade constraints;
+Drop table Order_status cascade constraints;
+Drop table Orders cascade constraints;
+Drop table Orders_product cascade constraints;
