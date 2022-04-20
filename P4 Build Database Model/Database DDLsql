@@ -1,0 +1,198 @@
+-----COUNTRY TABLE------
+Drop table Country cascade constraints;
+
+Create table Country (
+    Country_id    number not null,
+    Country_name  varchar2(50) not null,
+    constraint pk_countryid primary key(Country_id)
+);
+
+-----STATE TABLE-----
+Drop table States cascade constraints;
+
+Create table States (
+    States_id      number not null,
+    States_name    varchar2(50),
+    Country_id     number not null,
+    Constraint pk_statesid primary key (States_id),
+    Constraint fk_countryid foreign key (Country_id)
+        references Country (Country_id)
+);
+
+-----CITY TABLE-----
+Drop table City cascade constraints;
+
+Create table City (
+    City_id      number not null,
+    City_name    varchar2(50) not null,
+    States_id    number not null,
+    constraint pk_city primary key (City_id),
+    constraint fk_statesid foreign key (States_id) 
+        references States (States_id)
+);
+
+--------Customers---------
+drop table Customers cascade constraints;
+
+create table Customers (  
+  Customer_id         NUMBER , 
+  First_name          varchar2(50) not null,  
+  Last_name           varchar2(50) not null,  
+  Email_id            varchar2(50) not null,
+  Contact_no          number not null,
+  User_name           varchar2(50) not null,
+  Cust_password       varchar2(50) not null,
+  constraint pk_customer_id primary key (Customer_id)
+);
+
+
+-----Customer address-----
+Drop table Address cascade constraints;
+
+Create table Address (
+    Address_id         number not null,
+    Customer_id        number not null,
+    Apt_no             number not null,
+    Address_line1      varchar2(100) not null,
+    Address_line2      varchar2(100),
+    City_id            number not null,
+    Zipcode            number not null, 
+    constraint pk_address_apt primary key (Address_id, Apt_no),
+    constraint fk_address_custid foreign key (Customer_id)
+        references Customers (Customer_id),
+    constraint fk_address_cityid foreign key (City_id)
+        references City (City_id)
+);
+
+----CARD DETAIL-----
+Drop table Card_detail cascade constraints;
+
+Create table Card_detail(
+    Card_no        number not null,
+    Customer_id    number not null,
+    Card_type      varchar2(50) not null,
+    Validity_date  date not null,
+    Name_on_card   varchar2(100) not null,
+    constraint pk_carddetail primary key (Card_no),
+    constraint fk_carddetail foreign key (Customer_id)
+        references Customers (Customer_id)
+);
+
+
+
+-----SUBSCRIPTION DETAILS------
+Drop table Subscription_detail cascade constraints;
+
+Create table Subscription_detail (
+    Subscription_id         number not null,
+    Subscription_type       varchar(50) not null,
+    Discount                Float not null,
+    Valid_duration_month    varchar2(50) not null,
+    Price                   number not null,
+    constraint pk_subscription primary key (Subscription_id)
+);
+
+
+-----CUSTOMER MEMBERSHIP-----
+Drop table Customer_membership cascade constraints;
+
+Create table Customer_membership (
+    Membership_id       number not null,
+    Customer_id         number not null,
+    Subscription_id     number not null,
+    Date_of_purchase    Date not null,
+    Date_of_expiry      Date not null,
+    constraint pk_customermembership primary key (Membership_id),
+    constraint fk_customermem_cust foreign key (Customer_id)
+        references Customers (Customer_id),
+    constraint fk_membership_subscription foreign key (Subscription_id)
+        references Subscription_detail (Subscription_id)
+);
+
+---------Warehouse----------
+Drop table Warehouse cascade constraints;
+
+create table Warehouse (  
+  Warehouse_id           number not null,  
+  Warehouse_name         varchar2(25) not null,
+  Address                varchar2(100) not null,
+  City                   varchar2(50) not null,
+  States                 varchar2(50) not null,
+  Country                varchar2(50) not null,
+  Zip_code               number not null,
+  constraint pk_warehouse_id primary key (Warehouse_id)
+);
+
+
+---------Product category----------
+Drop table Product_category cascade constraints;
+
+create table Product_category (  
+  Category_id           number not null,  
+  Category_name         varchar2(25) not null,
+  constraint pk_category_id primary key (Category_id)
+);
+
+------PRODUCT-----
+Drop table Product cascade constraints;
+
+Create table Product (
+    Product_id           number not null,
+    Product_name         varchar2(100) not null,
+    Category_id          number not null,
+    Warehouse_id         number not null,
+    Quantity             number not null,
+    Product_price        Float not null,
+    Manufacturing_date   date not null,
+    Expiry_date          date not null,
+    constraint pk_product primary key (Product_id),
+    constraint fk_product foreign key (Category_id)
+        references Product_category (Category_id),
+    constraint fk_productwarehouse foreign key (Warehouse_id)
+        references Warehouse (Warehouse_id)
+);
+
+
+-------Order Status------------
+Drop table Order_status cascade constraints;
+
+create table Order_status (  
+  Status_id           number not null,  
+  Status              varchar2(25) not null,  
+  constraint pk_status_id primary key (Status_id)
+);
+
+------Orders---------------
+Drop table Orders cascade constraints;
+
+create table Orders (  
+  Order_id            number not null,  
+  Customer_id         number not null,  
+  Order_date          date not null,  
+  Shipped_date        date not null,
+  Status_id           number not null,
+  Order_total         float not null,
+  Discount_total      float not null,
+  Transaction_mode    varchar2(25) not null,
+  constraint pk_order_id primary key (Order_id),
+  constraint fk_customer_id foreign key (Customer_id)
+  references Customers (customer_id),
+  constraint fk_statusid foreign key (Status_id)
+  references Order_status  (Status_id)
+);
+
+-----Order Product------
+Drop table Orders_product cascade constraints;
+
+create table Orders_product (  
+  Order_product_id    number not null,  
+  Order_id            number not null,  
+  Product_id          number not null,  
+  Order_quantity      number not null,
+  Unique_price        float not null,
+  constraint pk_order_product_id primary key (Order_product_id),
+  constraint fk_order_id foreign key (Order_id)
+  references Orders (Order_id),
+  constraint fk_product1 foreign key (Product_id)
+  references Product (Product_id)
+);
