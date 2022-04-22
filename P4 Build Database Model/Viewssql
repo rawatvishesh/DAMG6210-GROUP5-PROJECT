@@ -1,6 +1,5 @@
-
--- 1 View---
-create view Customers_view as
+------View 1------
+Create view View_1 as
 select p.product_id, p.product_name, p.product_price, p.quantity,
 pc.category_id, w.warehouse_name
 from product p
@@ -9,30 +8,49 @@ on p.category_id = pc.category_id
 join warehouse w
 on p.warehouse_id = w.warehouse_id;
 
-select * from product;
-select * from orders;
---2 View---
---product(product_id, product_name, quantity, product_price)
---orders(order_total)
-select p.product_id, p.product_name, p.quantity, p.product_price, 
-o.orders_total from product p
-join orders o ;
+
+-----View 2------
+Create view view_2 as
+select c.customer_id, op.order_id, op.product_id,p.product_name, op.order_quantity, op.total_price 
+from orders_product op
+join orders o on
+op.order_id = o.order_id
+join customers c
+on c.customer_id = o.customer_id
+join product p
+on p.product_id = op.product_id
+where c.first_name = 'Raj' and c.last_name = 'Kootharpali';
 
 
+-----view 5----
+Create view view_5 as
+select c.customer_id, c.first_name, c.last_name, ci.city_name, a.zipcode
+from customers c
+join address a 
+on c.customer_id = a.customer_id
+join city ci 
+on a.city_id = ci.city_id
+where ci.city_name = 'Boston';
 
---8 view
-select * from subscription_detail;
-select * from customer_membership;
---subscription_id
-select * from customers;
-select c.first_name, c.last_name, s.subscription_type, m.date_of_purchase, 
-m.date_of_expiry, c.contact_no, c.email_id
-from customer c
-join customer_membership m
-on c.customer_id = m.customer_id
-join subscription_detail d on 
-m.subscription_id = d.subscription_id
-where m.
+
+----view 7-----
+Create view view_7 as
+select o.order_id ,c.first_name ,c.last_name
+from customers c
+join orders o
+on c.customer_id = o.customer_id
+join address a 
+on c.customer_id = a.customer_id
+where a.city_id = (select city_id from city where city_name = 'Brookline');
+
+-----View 8-----
+Create view view_8 as
+select cmp.membership_id , c.first_name, c.last_name, sd.subscription_type, cmp.date_of_purchase, cmp.date_of_expiry, c.contact_no, c.email_id
+from customer_membership cmp
+join customers c
+on c.customer_id = cmp.customer_id
+join subscription_detail sd
+on sd.subscription_id = cmp.subscription_id;
 
 
 
