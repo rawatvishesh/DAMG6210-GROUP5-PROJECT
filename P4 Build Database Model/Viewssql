@@ -1,4 +1,5 @@
 ------View 1------
+drop view View_1
 Create view View_1 as
 select p.product_id, p.product_name, p.product_price, p.quantity,
 pc.category_id, w.warehouse_name
@@ -7,6 +8,7 @@ join product_category pc
 on p.category_id = pc.category_id
 join warehouse w
 on p.warehouse_id = w.warehouse_id;
+
 
 
 -----View 2------
@@ -21,6 +23,14 @@ join product p
 on p.product_id = op.product_id
 where c.first_name = 'Raj' and c.last_name = 'Kootharpali';
 
+----View 4-----
+create view view_4 as
+select order_id, order_date, order_total ,discount_total
+from orders 
+where order_date between '01-Jun-2022' and '13-Jun-2022';
+
+
+
 
 -----view 5----
 Create view view_5 as
@@ -31,6 +41,7 @@ on c.customer_id = a.customer_id
 join city ci 
 on a.city_id = ci.city_id
 where ci.city_name = 'Boston';
+
 
 
 ----view 7-----
