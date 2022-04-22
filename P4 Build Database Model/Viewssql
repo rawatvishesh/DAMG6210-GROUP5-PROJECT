@@ -1,0 +1,38 @@
+
+-- 1 View---
+create view Customers_view as
+select p.product_id, p.product_name, p.product_price, p.quantity,
+pc.category_id, w.warehouse_name
+from product p
+join product_category pc 
+on p.category_id = pc.category_id
+join warehouse w
+on p.warehouse_id = w.warehouse_id;
+
+select * from product;
+select * from orders;
+--2 View---
+--product(product_id, product_name, quantity, product_price)
+--orders(order_total)
+select p.product_id, p.product_name, p.quantity, p.product_price, 
+o.orders_total from product p
+join orders o ;
+
+
+
+--8 view
+select * from subscription_detail;
+select * from customer_membership;
+--subscription_id
+select * from customers;
+select c.first_name, c.last_name, s.subscription_type, m.date_of_purchase, 
+m.date_of_expiry, c.contact_no, c.email_id
+from customer c
+join customer_membership m
+on c.customer_id = m.customer_id
+join subscription_detail d on 
+m.subscription_id = d.subscription_id
+where m.
+
+
+
