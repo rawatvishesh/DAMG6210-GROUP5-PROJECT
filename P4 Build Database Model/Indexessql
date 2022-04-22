@@ -1,0 +1,39 @@
+---City index---
+CREATE INDEX City_index
+ON City(City_name);
+
+----Customer index----
+CREATE INDEX Customer_index
+ON Customers(First_name,Last_name);
+
+----Address index----
+CREATE INDEX Address_index
+ON Address(City_id, Zipcode);
+
+----Card detail index----
+CREATE INDEX Card_detail_index
+ON Card_detail(Card_type, Name_on_card);
+
+----Subscription index----
+CREATE INDEX Subscription_index
+ON Subscription_detail(Subscription_type, Discount, Price);
+
+----Product category index----
+CREATE INDEX Product_category_index
+ON Product_category(Category_name);
+
+----Product index----
+CREATE INDEX Product_index
+ON Product(Product_name, Quantity, Product_price);
+
+----Order_status index----
+CREATE INDEX Order_status_index
+ON Order_status(Status);
+
+----Order index----
+CREATE INDEX Orders_index
+ON Orders(Order_date, Shipped_date, Transaction_mode);
+
+
+Select * 
+from all_indexes
