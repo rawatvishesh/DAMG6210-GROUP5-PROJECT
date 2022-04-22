@@ -1,5 +1,4 @@
 ------View 1------
-drop view View_1
 Create view View_1 as
 select p.product_id, p.product_name, p.product_price, p.quantity,
 pc.category_id, w.warehouse_name
