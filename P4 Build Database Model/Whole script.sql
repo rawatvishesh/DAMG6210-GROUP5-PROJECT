@@ -487,8 +487,25 @@ end;
 execute insert_customer ('Sam','Stuart','Sam.s@gmail.com',9874651328, 'Sam.s','Sam@123');
 
 
+set serveroutput on
+create or replace procedure insert_product(
+i_name Product.Product_name%type,
+I_category  Product_category.Category_id%type,
+i_warehouse_id warehouse.Warehouse_id%type,
+i_quantity   product.quantity%type,
+i_price product.product_price%type,
+i_manu_date   product.Manufacturing_date%type,
+i_exp_date    product.Expiry_date%type)
+is
+begin
+    
+    INSERT INTO Product (Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) 
+    values (i_name, I_category, i_warehouse_id, i_quantity, i_price, i_manu_date,i_exp_date);
+Commit;
+end;
+/
 
-
+execute insert_product('Nike',4,3,2,150,to_date('Jan-26-2022', 'mm-dd-yyyy'),null);
 
 
 
