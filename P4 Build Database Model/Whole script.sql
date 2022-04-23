@@ -509,9 +509,21 @@ execute insert_product('Nike',4,3,2,150,to_date('Jan-26-2022', 'mm-dd-yyyy'),nul
 
 
 
+set serveroutput on
+create or replace procedure insert_subscription(
+u_subscription_id  subscription_detail.subscription_id%type,
+u_subscription_type     subscription_detail.subscription_type%type,
+u_discount              subscription_detail.discount%type)
+is
+begin
+update subscription_detail 
+set subscription_type = u_subscription_type, discount = u_discount
+where subscription_id = u_subscription_id;
+commit;
+end;
+/
 
-
-
+execute insert_subscription(2, 'Ruby',0.4);
 
 
 
