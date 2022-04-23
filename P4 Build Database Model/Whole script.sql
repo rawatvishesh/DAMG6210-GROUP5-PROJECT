@@ -526,6 +526,17 @@ end;
 execute insert_subscription(2, 'Ruby',0.4);
 
 
+set serveroutput on
+create or replace procedure d_customers(
+d_first_name      customers.first_name%type
+)
+is
+begin
+delete from customers where first_name = d_first_name;
+end;
+/
+
+execute d_customers('Sam')
 
 
 
