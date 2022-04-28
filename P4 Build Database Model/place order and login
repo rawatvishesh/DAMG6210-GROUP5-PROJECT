@@ -112,3 +112,29 @@ place_order('Iron',1, amount);
 dbms_output.put_line(amount);
 END;
 
+
+
+
+create or replace procedure login (
+    i_email varchar,
+    i_pswd varchar
+    )
+IS
+    invalid_credentials exception;
+BEGIN
+    select email_id into i_email from customers where emial_id = i_email;
+    select CUST_PASSWORD into i_pswd from customers where emial_id = i_email;
+    if 
+    i_email is not null and i_pswd is not null
+    then 
+    dbms_output.put_line('Login Successfull')
+--    else
+--    raise invalid_credentials;
+    end if;
+when no_data_found then
+    raise invalid_credentials;
+end;
+exception
+when invalid_credentials THEN
+            dbms_output.put_line('Invalid Credentials');
+end login;
