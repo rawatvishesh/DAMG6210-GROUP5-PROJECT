@@ -1,0 +1,108 @@
+create or replace view available_inventory 
+as
+    WITH td AS (
+    SELECT
+        m.product_id,
+        m.product_name,
+        m.category_id,
+        m.quantity,
+        m.product_price,
+        c.order_quantity       sold_quantity
+    FROM
+             product m
+        INNER JOIN orders_product c ON m.PRODUCT_ID = c.product_id
+)
+SELECT distinct
+    td.product_id,
+    td.product_name,
+    td.category_id,
+    td.quantity,
+    td.product_price,
+    nvl(td.sold_quantity,0) as sold_quantity,    
+    td.quantity - nvl(td.sold_quantity,0) AS available_quantity
+FROM
+    Td
+
+--execute seperately
+ 
+ create or replace FUNCTION get_available_qty (
+        i_item_name VARCHAR
+    ) RETURN NUMBER IS
+        v_avail_qty NUMBER;
+    BEGIN
+        SELECT
+            available_quantity
+        INTO v_avail_qty
+        FROM
+            available_inventory
+        WHERE
+            lower(product_name) = lower(i_item_name);
+
+        RETURN v_avail_qty;
+    EXCEPTION
+        WHEN OTHERS THEN
+            RETURN -1;
+    END get_available_qty;
+    
+    
+    --execute seperately
+
+
+create or replace PROCEDURE place_order (
+        i_item_name     VARCHAR,
+        i_order_qty     NUMBER,
+        o_order_number  OUT  NUMBER
+    ) IS
+        ex_insufficient_inventory EXCEPTION;
+        v_available_qty  NUMBER;
+        v_item_no        NUMBER;
+        v_total_price number;
+    BEGIN
+--check if we have inventory before placing order
+        SELECT
+            product_id
+        INTO v_item_no
+        FROM
+            available_inventory
+        WHERE
+            lower(product_name) = lower(i_item_name);
+          SELECT
+            available_inventory.product_price * i_order_qty 
+        INTO v_total_price
+        FROM
+            available_inventory
+        WHERE
+            lower(product_name) = lower(i_item_name);
+
+        v_available_qty := get_available_qty(i_item_name);
+        IF v_available_qty >= i_order_qty THEN
+            INSERT INTO orders_product (
+                product_id,
+                order_id,
+                order_quantity,
+                total_price
+            ) VALUES (
+                product_id_seq.NEXTVAL,
+                order_id_seq.nextval,
+                i_order_qty,
+                v_total_price
+            );
+
+            o_order_number := order_id_seq.currval;
+            COMMIT;
+        ELSE
+            RAISE ex_insufficient_inventory;
+        END IF;
+
+    EXCEPTION
+        WHEN no_data_found THEN
+            dbms_output.put_line('invalid item name. plase send a valid item name as specified in inventory list');
+        WHEN ex_insufficient_inventory THEN
+            dbms_output.put_line('Item stock is not available OR it is less than ordered quantity');
+    END place_order;
+
+
+
+
+execute PROCEDURE place_order (chicken,2);
+
