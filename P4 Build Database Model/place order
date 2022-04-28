@@ -104,5 +104,11 @@ create or replace PROCEDURE place_order (
 
 
 
-execute PROCEDURE place_order (chicken,2);
+set serveroutput on
+DECLARE
+amount NUMBER;
+BEGIN
+place_order('Iron',1, amount);
+dbms_output.put_line(amount);
+END;
 
