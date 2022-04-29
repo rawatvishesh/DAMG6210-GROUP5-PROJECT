@@ -733,9 +733,39 @@ execute login('aherfex.m', 'Alex@123');
 
 
 
+---------fetch card_details---------------------
+create or replace procedure fetch_card_details (
+        i_fname varchar2,
+        i_lname varchar2
+    )  is
+        v_card_no number;
+        v_card_type varchar2(50);
+        v_id number;
+    BEGIN
+    select customer_id into v_id from customers where lower(first_name)=lower(i_fname) and lower(last_name)=lower(i_lname);
+        SELECT card_no 
+        INTO v_card_no
+        FROM
+            card_detail
+        WHERE
+        customer_id = v_id;
+        SELECT card_type 
+        INTO v_card_type
+        FROM
+            card_detail
+        WHERE
+        customer_id = v_id;       
+       dbms_output.put_line(v_card_no);
+       dbms_output.put_line(v_card_type);
+    EXCEPTION
+        WHEN others THEN
+          dbms_output.put_line('name doesnot exists');
+    END;
 
-
-
+    execute fetch_card_details('Jessica','Pearson');
+    execute fetch_card_details('Donna','Paulsen');
+    execute fetch_card_details('Samantha','Wheeler');
+    execute fetch_card_details('Stephen','Jackson');
 
 
 
