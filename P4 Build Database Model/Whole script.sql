@@ -183,6 +183,10 @@ create table Orders (
   constraint fk_statusid foreign key (Status_id)
   references Order_status  (Status_id)
 );
+CREATE SEQUENCE order_id_auto START WITH 2511;
+CREATE OR REPLACE TRIGGER TRIGGER_ORDER BEFORE INSERT ON Orders FOR EACH ROW BEGIN SELECT order_id_auto.NEXTVAL INTO : NEW.Order_id FROM DUAL;
+END;
+/
 
 
 
@@ -398,16 +402,16 @@ Insert into Order_status (Status_id, Status) values (4, 'Delivered');
 
 
 ------Orders---------------
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2511, 20, to_date('01-06-2022', 'dd-mm-yyyy'), to_date('03/06/2022', 'dd-mm-yyyy'), 2, 500.00, 450.00, 'Appple pay' );
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2512, 19, to_date('03-06-2022', 'dd-mm-yyyy'), to_date('05-06-2022', 'dd-mm-yyyy'), 4, 223.98, NULL, 'Cash');
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2513, 17, to_date('03-06-2022', 'dd-mm-yyyy'), to_date('07-06-2022','dd-mm-yyyy'), 1, 841.99, NULL, 'debit card');
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2514, 15, to_date('05-06-2022', 'dd-mm-yyyy'), to_date('09-06-2022', 'dd-mm-yyyy'), 3, 1345.93, NULL , 'Venmo');
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2515, 13, to_date('06-06-2022', 'dd-mm-yyyy'), to_date('08-06-2022','dd-mm-yyyy'), 1, 236.94, NULL , 'Cash');
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2516, 11, to_date('06-06-2022', 'dd-mm-yyyy'), to_date('10-06-2022', 'dd-mm-yyyy'), 4, 1703,NULL, 'Credit card');
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2517, 8, to_date('12-06-2022', 'dd-mm-yyyy'), to_date('15-06-2022', 'dd-mm-yyyy'), 2, 422.44, 295.708, 'Apple pay');
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2518, 6, to_date('13-06-2022', 'dd-mm-yyyy'), to_date('15-06-2022', 'dd-mm-yyyy'), 3, 1454, 1163.2, 'Credit Card');
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2519, 4, to_date('17-06-2022', 'dd-mm-yyyy'), to_date('20-06-2022', 'dd-mm-yyyy'), 2, 154.91, 139.419, 'Debit card' );
-Insert into Orders (Order_id, Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2520, 2, to_date('17-06-2022', 'dd-mm-yyyy'), to_date('18-06-2022', 'dd-mm-yyyy'), 1, 412.47, 288.729, 'Credit card');
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (20, to_date('01-06-2022', 'dd-mm-yyyy'), to_date('03/06/2022', 'dd-mm-yyyy'), 2, 500.00, 450.00, 'Appple pay' );
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (19, to_date('03-06-2022', 'dd-mm-yyyy'), to_date('05-06-2022', 'dd-mm-yyyy'), 4, 223.98, NULL, 'Cash');
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (17, to_date('03-06-2022', 'dd-mm-yyyy'), to_date('07-06-2022','dd-mm-yyyy'), 1, 841.99, NULL, 'debit card');
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (15, to_date('05-06-2022', 'dd-mm-yyyy'), to_date('09-06-2022', 'dd-mm-yyyy'), 3, 1345.93, NULL , 'Venmo');
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (13, to_date('06-06-2022', 'dd-mm-yyyy'), to_date('08-06-2022','dd-mm-yyyy'), 1, 236.94, NULL , 'Cash');
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (11, to_date('06-06-2022', 'dd-mm-yyyy'), to_date('10-06-2022', 'dd-mm-yyyy'), 4, 1703,NULL, 'Credit card');
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (8, to_date('12-06-2022', 'dd-mm-yyyy'), to_date('15-06-2022', 'dd-mm-yyyy'), 2, 422.44, 295.708, 'Apple pay');
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (6, to_date('13-06-2022', 'dd-mm-yyyy'), to_date('15-06-2022', 'dd-mm-yyyy'), 3, 1454, 1163.2, 'Credit Card');
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (4, to_date('17-06-2022', 'dd-mm-yyyy'), to_date('20-06-2022', 'dd-mm-yyyy'), 2, 154.91, 139.419, 'Debit card' );
+Insert into Orders (Customer_id, Order_date, Shipped_date, Status_id, Order_total, Discount_total, Transaction_mode) values (2, to_date('17-06-2022', 'dd-mm-yyyy'), to_date('18-06-2022', 'dd-mm-yyyy'), 1, 412.47, 288.729, 'Credit card');
 
 -----Order Product------
 
@@ -465,6 +469,44 @@ insert into Orders_product(Order_id,Product_id,Order_quantity,Total_price) value
 insert into Orders_product(Order_id,Product_id,Order_quantity,Total_price) values(2520,0600035,1,300);
 
 
+----------------------indexes------------------------------------
+---City index---
+CREATE INDEX City_index
+ON City(City_name);
+
+----Customer index----
+CREATE INDEX Customer_index
+ON Customers(First_name,Last_name);
+
+----Address index----
+CREATE INDEX Address_index
+ON Address(City_id, Zipcode);
+
+----Card detail index----
+CREATE INDEX Card_detail_index
+ON Card_detail(Card_type, Name_on_card);
+
+----Subscription index----
+CREATE INDEX Subscription_index
+ON Subscription_detail(Subscription_type, Discount, Price);
+
+----Product category index----
+CREATE INDEX Product_category_index
+ON Product_category(Category_name);
+
+----Product index----
+CREATE INDEX Product_index
+ON Product(Product_name, Quantity, Product_price);
+
+----Order_status index----
+CREATE INDEX Order_status_index
+ON Order_status(Status);
+
+----Order index----
+CREATE INDEX Orders_index
+ON Orders(Order_date, Shipped_date, Transaction_mode);
+
+
 
 --------------------------------------------------UPDATE, DELETE STATEMENTS----------------------------------------------
 
@@ -488,6 +530,9 @@ end;
 execute insert_customer ('Sam','Stuart','Sam.s@gmail.com',9874651328, 'Sam.s','Sam@123');
 
 
+select * from customers;
+
+
 set serveroutput on
 create or replace procedure insert_product(
 i_name Product.Product_name%type,
@@ -508,6 +553,8 @@ end;
 
 execute insert_product('Nike',4,3,2,150,to_date('Jan-26-2022', 'mm-dd-yyyy'),null);
 
+select * from product;
+
 
 
 set serveroutput on
@@ -526,6 +573,8 @@ end;
 
 execute insert_subscription(2, 'Ruby',0.4);
 
+SELECT * FROM SUBSCRIPTION_DETAIL;
+
 
 set serveroutput on
 create or replace procedure d_customers(
@@ -539,11 +588,148 @@ end;
 
 execute d_customers('Sam')
 
+Select * from customers;
+
+
+--------------stocks available---------------------------
+create or replace view available_inventory 
+as
+    WITH td AS (
+    SELECT
+        m.product_id,
+        m.product_name,
+        m.category_id,
+        m.quantity,
+        m.product_price,
+        c.order_quantity       sold_quantity
+    FROM
+             product m
+        left JOIN orders_product c ON m.PRODUCT_ID = c.product_id
+)
+SELECT distinct
+    td.product_id,
+    td.product_name,
+    td.category_id,
+    td.quantity,
+    td.product_price,
+    nvl(td.sold_quantity,0) as sold_quantity,    
+    td.quantity - nvl(td.sold_quantity,0) AS available_quantity
+FROM
+    Td
+
+Select * from available_inventory;
+
+--execute seperately
+-----------------------product available quantity-------------------------
+ create or replace FUNCTION get_available_qty (
+        i_item_name VARCHAR
+    ) RETURN NUMBER IS
+        v_avail_qty NUMBER;
+    BEGIN
+        SELECT
+            available_quantity
+        INTO v_avail_qty
+        FROM
+            available_inventory
+        WHERE
+            lower(product_name) = lower(i_item_name);
+
+        RETURN v_avail_qty;
+    EXCEPTION
+        WHEN OTHERS THEN
+            RETURN -1;
+    END get_available_qty;
+    
+select get_available_qty ('Television') as product_remaining_stock from dual;
+    
+    
+    --execute seperately
+----------------------place_order procedure-----------------------
+set serveroutput on
+create or replace PROCEDURE place_order (
+        i_item_name     VARCHAR,
+        i_order_qty     NUMBER
+       
+    ) IS
+        ex_insufficient_inventory EXCEPTION;
+        v_available_qty  NUMBER;
+        v_item_no        NUMBER;
+        v_order_id      number;
+        v_total_price number;
+    BEGIN
+--check if we have inventory before placing order
+        SELECT
+            product_id
+        INTO v_item_no
+        FROM
+            available_inventory
+        WHERE
+            lower(product_name) = lower(i_item_name);
+        SELECT    
+            order_id_auto.nextval
+        INTO v_order_id
+        FROM
+            available_inventory;
+
+          SELECT
+            available_inventory.product_price * i_order_qty 
+        INTO v_total_price
+        FROM
+            available_inventory
+        WHERE
+            lower(product_name) = lower(i_item_name);
+
+        v_available_qty := get_available_qty(i_item_name);
+        IF v_available_qty >= i_order_qty THEN
+            INSERT INTO orders_product (
+                product_id,
+                order_id,
+                order_quantity,
+                total_price
+            ) VALUES (
+                v_item_no,
+                v_order_id,
+                i_order_qty,
+                v_total_price
+            );
+
+            total_price1 := v_total_price;
+            dbms_output.put_line(total_price1);
+            COMMIT;
+        ELSE
+            RAISE ex_insufficient_inventory;
+        END IF;
+
+    EXCEPTION
+        WHEN no_data_found THEN
+            dbms_output.put_line('invalid item name. plase send a valid item name as specified in inventory list');
+        WHEN ex_insufficient_inventory THEN
+            dbms_output.put_line('Item stock is not available OR it is less than ordered quantity');
+    END place_order;
 
 
 
+place_order('Iron',1, )
 
+END;
 
+----------------login procedure--------------
+set serveroutput on
+create or replace procedure login (i_user_name varchar2, i_pswd varchar2)
+as
+    v_password varchar2(50);
+BEGIN
+    select cust_password into v_password from customers where lower(user_name) = lower(i_user_name);
+    if  i_pswd = v_password then 
+        dbms_output.put_line('Login Successfull');
+    end if;
+exception 
+when no_data_found then
+dbms_output.put_line('invalid credentials');
+end;
+
+execute login('alex.m', 'Alex@123');
+execute login('aherfex.m', 'Alex@123');
 
 
 
@@ -578,9 +764,10 @@ Drop sequence AUTOGENERATEDD_ID;
 Drop trigger TRIGGER_Product;
 Drop table Product cascade constraints;
 Drop table Order_status cascade constraints;
+Drop SEQUENCE order_id_auto;
+Drop TRIGGER TRIGGER_ORDER;
 Drop table Orders cascade constraints;
 Drop sequence AUTOGENERATEDDDD_ID;
 Drop Trigger TRIGGER_ORDER_PRODUCT;
 Drop table Orders_product cascade constraints;
-Drop procedure inser_customer;
 
