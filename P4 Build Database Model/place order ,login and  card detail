@@ -1,3 +1,4 @@
+-------------------PACKAGE-----------------------
 create or replace view available_inventory 
 as
     WITH td AS (
@@ -114,7 +115,7 @@ END;
 
 
 
-
+-------------------------LOGIN PROCEDURE--------------------------------
 create or replace procedure login (
     i_email varchar,
     i_pswd varchar
@@ -141,10 +142,10 @@ end login;
 
 
 
---card detail 
 
 
 
+-----------------------FETCH CARD DETAILS--------------------------
 create or replace procedure fetch_card_details (
         i_fname varchar2,
         i_lname varchar2
