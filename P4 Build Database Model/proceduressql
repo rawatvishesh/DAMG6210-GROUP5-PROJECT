@@ -1,0 +1,79 @@
+set serveroutput on
+Create or replace procedure insert_customer (
+cust_first_name  Customers.first_name%type,
+cust_last_name   Customers.last_name%type,
+Cust_email       Customers.email_id%type,
+cust_contact     Customers.contact_no%type,
+cust_username    Customers.user_name%type,
+cust_password    Customers.cust_password%type
+)
+is
+begin
+    Insert into Customers (First_name, Last_name, Email_id, Contact_no, User_name, Cust_password) 
+    values (cust_first_name,cust_last_name,Cust_email,cust_contact,cust_username,cust_password);
+commit;
+end;
+/
+
+execute insert_customer ('Sam','Stuart','Sam.s@gmail.com',9874651328, 'Sam.s','Sam@123');
+
+
+select * from customers;
+
+
+set serveroutput on
+create or replace procedure insert_product(
+i_name Product.Product_name%type,
+I_category  Product_category.Category_id%type,
+i_warehouse_id warehouse.Warehouse_id%type,
+i_quantity   product.quantity%type,
+i_price product.product_price%type,
+i_manu_date   product.Manufacturing_date%type,
+i_exp_date    product.Expiry_date%type)
+is
+begin
+    
+    INSERT INTO Product (Product_name, Category_id, Warehouse_id, Quantity, Product_price, Manufacturing_date, Expiry_date) 
+    values (i_name, I_category, i_warehouse_id, i_quantity, i_price, i_manu_date,i_exp_date);
+Commit;
+end;
+/
+
+execute insert_product('Nike',4,3,2,150,to_date('Jan-26-2022', 'mm-dd-yyyy'),null);
+
+select * from product;
+
+
+
+set serveroutput on
+create or replace procedure insert_subscription(
+u_subscription_id  subscription_detail.subscription_id%type,
+u_subscription_type     subscription_detail.subscription_type%type,
+u_discount              subscription_detail.discount%type)
+is
+begin
+update subscription_detail 
+set subscription_type = u_subscription_type, discount = u_discount
+where subscription_id = u_subscription_id;
+commit;
+end;
+/
+
+execute insert_subscription(2, 'Ruby',0.4);
+
+SELECT * FROM SUBSCRIPTION_DETAIL;
+
+
+set serveroutput on
+create or replace procedure d_customers(
+d_first_name      customers.first_name%type
+)
+is
+begin
+delete from customers where first_name = d_first_name;
+end;
+/
+
+execute d_customers('Sam');
+
+Select * from customers;
