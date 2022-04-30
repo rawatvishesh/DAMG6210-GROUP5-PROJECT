@@ -1,3 +1,5 @@
+-----------------------INSERT CUSTOMER PROCEDURE--------------------
+
 set serveroutput on
 Create or replace procedure insert_customer (
 cust_first_name  Customers.first_name%type,
@@ -20,7 +22,7 @@ execute insert_customer ('Sam','Stuart','Sam.s@gmail.com',9874651328, 'Sam.s','S
 
 select * from customers;
 
-
+------------------------INSERT PROCEDURE---------------------
 set serveroutput on
 create or replace procedure insert_product(
 i_name Product.Product_name%type,
@@ -44,7 +46,7 @@ execute insert_product('Nike',4,3,2,150,to_date('Jan-26-2022', 'mm-dd-yyyy'),nul
 select * from product;
 
 
-
+----------------------------INSERT PROCEDURE------------------------------
 set serveroutput on
 create or replace procedure insert_subscription(
 u_subscription_id  subscription_detail.subscription_id%type,
@@ -63,7 +65,7 @@ execute insert_subscription(2, 'Ruby',0.4);
 
 SELECT * FROM SUBSCRIPTION_DETAIL;
 
-
+--------------------DELETE PROCEDURE--------------------------
 set serveroutput on
 create or replace procedure d_customers(
 d_first_name      customers.first_name%type
@@ -77,3 +79,63 @@ end;
 execute d_customers('Sam');
 
 Select * from customers;
+
+
+-------------------------LOGIN PROCEDURE--------------------------------
+create or replace procedure login (
+    i_email varchar,
+    i_pswd varchar
+    )
+IS
+    invalid_credentials exception;
+BEGIN
+    select email_id into i_email from customers where emial_id = i_email;
+    select CUST_PASSWORD into i_pswd from customers where emial_id = i_email;
+    if 
+    i_email is not null and i_pswd is not null
+    then 
+    dbms_output.put_line('Login Successfull')
+--    else
+--    raise invalid_credentials;
+    end if;
+when no_data_found then
+    raise invalid_credentials;
+end;
+exception
+when invalid_credentials THEN
+            dbms_output.put_line('Invalid Credentials');
+end login;
+
+
+
+
+
+
+-----------------------FETCH CARD DETAILS--------------------------
+create or replace procedure fetch_card_details (
+        i_fname varchar2,
+        i_lname varchar2
+    )  is
+        v_card_no number;
+        v_card_type varchar2(50);
+        v_id number;
+    BEGIN
+    select customer_id into v_id from customers where lower(first_name)=lower(i_fname) and lower(last_name)=lower(i_lname);
+        SELECT card_no 
+        INTO v_card_no
+        FROM
+            card_detail
+        WHERE
+        customer_id = v_id;
+        SELECT card_type 
+        INTO v_card_type
+        FROM
+            card_detail
+        WHERE
+        customer_id = v_id;       
+       dbms_output.put_line(v_card_no);
+       dbms_output.put_line(v_card_type);
+    EXCEPTION
+        WHEN others THEN
+          dbms_output.put_line('name doesnot exists');
+    END;
