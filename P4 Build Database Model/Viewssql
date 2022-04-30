@@ -1,0 +1,53 @@
+create or replace view view 1
+select c.customer_id, op.order_id, op.product_id,p.product_name, op.order_quantity, op.total_price 
+from orders_product op
+join orders o on
+op.order_id = o.order_id
+join customers c
+on c.customer_id = o.customer_id
+join product p
+on p.product_id = op.product_id
+where c.first_name = 'Raj' and c.last_name = 'Kootharpali';
+
+create or replace view view2
+select c.customer_id, (c.first_name|| ' '||c.last_name) as Customer_name, o.order_id, o.order_date, o.order_total ,o.discount_total
+from orders o
+join customers c 
+on o.customer_id = c.customer_id
+where order_date between '01-Jun-2022' and '13-Jun-2022'
+order by c.customer_id;
+
+create or replace view view3
+select cmp.membership_id , c.first_name, c.last_name, sd.subscription_type, cmp.date_of_purchase, cmp.date_of_expiry, c.contact_no, c.email_id
+from customer_membership cmp
+join customers c
+on c.customer_id = cmp.customer_id
+join subscription_detail sd
+on sd.subscription_id = cmp.subscription_id;
+
+create or replace view available_inventory 
+as
+    WITH td AS (
+    SELECT
+        m.product_id,
+        m.product_name,
+        m.category_id,
+        m.quantity,
+        m.product_price,
+        c.order_quantity       sold_quantity
+    FROM
+             product m
+        left JOIN orders_product c ON m.PRODUCT_ID = c.product_id
+)
+SELECT distinct
+    td.product_id,
+    td.product_name,
+    td.category_id,
+    td.quantity,
+    td.product_price,
+    nvl(td.sold_quantity,0) as sold_quantity,    
+    td.quantity - nvl(td.sold_quantity,0) AS available_quantity
+FROM
+    Td
+
+Select * from available_inventory;
